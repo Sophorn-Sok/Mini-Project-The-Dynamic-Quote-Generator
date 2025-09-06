@@ -1,29 +1,24 @@
-
-
 "use client";
 import Image from "next/image";
 import { useState } from "react";
 
-const QUOTES = [
-  "✨ The best way to get started is to quit talking and begin doing.",
-  "🔥 Don't let yesterday take up too much of today.",
-  "💪 It's not whether you get knocked down, it's whether you get up.",
-  "🚀 If you are working on something exciting, it will keep you motivated.",
-  "🌈 Success is not in what you have, but who you are.",
-  "😎 Dream big, hustle harder.",
-  "👾 Stay weird, stay creative.",
-  "🦄 Be yourself, everyone else is taken.",
-  "💥 Make it happen, Gen Z style!",
-  "Good thing take time"
 
-];
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
   const [quote, setQuote] = useState<string>("");
 
-  function getRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * QUOTES.length);
-    setQuote(QUOTES[randomIndex]);
+  
+
+  async function fetchQuote() {
+    if (!apiUrl) {
+      setQuote("API URL is not defined.");
+      return;
+    }
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+    setQuote(data.quote);
   }
 
   return (
@@ -45,7 +40,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6 w-full">
           <button
             className="px-8 py-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-white font-bold text-2xl rounded-full shadow-lg hover:scale-105 hover:from-pink-500 hover:to-blue-500 transition-all duration-300 active:scale-95 border-4 border-white/30"
-            onClick={getRandomQuote}
+            onClick={fetchQuote}
           >
             <span className="inline-flex items-center gap-2">
               <span role="img" aria-label="sparkles">⚡</span> Generate Quote
