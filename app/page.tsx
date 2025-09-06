@@ -13,7 +13,9 @@ const QUOTES = [
   "😎 Dream big, hustle harder.",
   "👾 Stay weird, stay creative.",
   "🦄 Be yourself, everyone else is taken.",
-  "💥 Make it happen, Gen Z style!"
+  "💥 Make it happen, Gen Z style!",
+  "Good thing take time"
+
 ];
 
 export default function Home() {

@@ -24,8 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/genz-logo.png" />
+        <meta name="theme-color" content="#a78bfa" />
+        <meta name="description" content="GenZ Quote Generator - Get inspired with fresh, bold quotes!" />
+        <title>GenZ Quote Generator</title>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 min-h-screen`}
       >
         {children}
       </body>
