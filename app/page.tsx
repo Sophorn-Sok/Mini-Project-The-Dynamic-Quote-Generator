@@ -8,8 +8,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
   const [quote, setQuote] = useState<string>("");
-
-  
+  const [copyMessage, setCopyMessage] = useState("");
 
   async function fetchQuote() {
     if (!apiUrl) {
@@ -20,6 +19,12 @@ export default function Home() {
     const data = await res.json();
     setQuote(data.quote);
   }
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(quote);
+    setCopyMessage('Quote copied to clipboard!');
+    setTimeout(() => setCopyMessage(''), 2000); // Clear message after 2 seconds
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 px-4 py-10">
@@ -61,6 +66,15 @@ export default function Home() {
           >
             {quote ? quote : "Tap the button for instant GenZ inspo!"}
           </div>
+          {quote && (
+            <button
+              onClick={copyToClipboard}
+              className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
+            >
+              Copy Quote
+            </button>
+          )}
+          {copyMessage && <div className="mt-2 text-green-200">{copyMessage}</div>}
         </div>
         {/* ...existing code... (keep the ol and links for demo) */}
     
