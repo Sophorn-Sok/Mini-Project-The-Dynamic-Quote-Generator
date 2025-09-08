@@ -61,8 +61,10 @@ func main() {
 			return
 		}
 
-		rand.Seed(time.Now().UnixNano()) // <-- This line ensures randomness for every request!
-		randomIndex := rand.Intn(len(quotes))
+		// rand.Seed(time.Now().UnixNano()) // <-- This line ensures randomness for every request!
+		// Use a local random generator instead
+		localRand := rand.New(rand.NewSource(time.Now().UnixNano()))
+		randomIndex := localRand.Intn(len(quotes))
 		resp := map[string]string{"quote": quotes[randomIndex]}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(resp)
