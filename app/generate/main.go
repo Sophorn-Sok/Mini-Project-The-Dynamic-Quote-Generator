@@ -52,7 +52,7 @@ var quotes = []string{
 
 func main() {
 	http.HandleFunc("/api/quote", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*") // Allow all origins for testing
+		w.Header().Set("Access-Control-Allow-Origin", "https://mini-project-the-dynamic-quote-gene.vercel.app") // Allow Vercel origin
 		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
