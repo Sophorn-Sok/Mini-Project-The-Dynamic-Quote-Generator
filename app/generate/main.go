@@ -52,7 +52,15 @@ var quotes = []string{
 
 func main() {
 	http.HandleFunc("/api/quote", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "https://mini-project-the-dynamic-quote-gene.vercel.app") // Allow Vercel origin
+		origin := r.Header.Get("Origin")
+		allowedOrigins := map[string]bool{
+			"http://localhost:3000":                                  true,
+			"http://localhost:3001":                                  true,
+			"https://mini-project-the-dynamic-quote-gene.vercel.app": true,
+		}
+		if allowedOrigins[origin] {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+		}
 		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
@@ -61,8 +69,6 @@ func main() {
 			return
 		}
 
-		// rand.Seed(time.Now().UnixNano()) // <-- This line ensures randomness for every request!
-		// Use a local random generator instead
 		localRand := rand.New(rand.NewSource(time.Now().UnixNano()))
 		randomIndex := localRand.Intn(len(quotes))
 		resp := map[string]string{"quote": quotes[randomIndex]}
