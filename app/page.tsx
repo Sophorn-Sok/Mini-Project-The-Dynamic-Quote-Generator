@@ -2,20 +2,13 @@
 import Image from "next/image";
 import { useState } from "react";
 
-
-
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
 export default function Home() {
   const [quote, setQuote] = useState<string>("");
   const [copyMessage, setCopyMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   async function fetchQuote() {
-    if (!apiUrl) {
-      setQuote("API URL is not defined.");
-      return;
-    }
+    const apiUrl = "/api/quote"; // Direct API route - works in both development and production
     
     setIsLoading(true);
     try {
