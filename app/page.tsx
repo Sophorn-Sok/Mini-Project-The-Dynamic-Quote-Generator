@@ -94,10 +94,6 @@ export default function Home() {
         {/* ...existing code... (keep the ol and links for demo) */}
     
        
-         
-            
-          
-        
       </main>
  
     </div>

@@ -130,6 +130,6 @@ User → Vercel Edge Network → Next.js App → Supabase Database
 
 ---
 
-**Live Demo**: [Deploy to Vercel](https://mini-project-the-dynamic-quote-gene.vercel.app/)
+**Live Demo here**: [Deploy to Vercel](https://mini-project-the-dynamic-quote-gene.vercel.app/)
 
 Made with ❤️ by Sophorn Sok
